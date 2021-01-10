@@ -136,6 +136,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddle1: {fileID: 0}
   initialVelocity: {x: 2, y: 10}
+  ballSounds:
+  - {fileID: 8300000, guid: 133afe8c317bd9e4294efab1b9d699e8, type: 3}
+  - {fileID: 8300000, guid: b5fb002cdc61bd8408a89df04f6363f6, type: 3}
+  - {fileID: 8300000, guid: 474ad044829550146ba9f55319e89256, type: 3}
+  - {fileID: 8300000, guid: 7ecd6133672e3e34e9d4ccdf11daed8f, type: 3}
+  - {fileID: 8300000, guid: 0061ae420fe066c44aa15203f9856fbb, type: 3}
 --- !u!82 &151484717
 AudioSource:
   m_ObjectHideFlags: 0

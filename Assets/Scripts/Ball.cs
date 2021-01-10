@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] Paddle paddle1;
     [SerializeField] Vector2 initialVelocity;
+    [SerializeField] AudioClip[] ballSounds;
 
     bool hasStarted = false;
     private AudioSource audioSource;
@@ -52,7 +53,8 @@ public class Ball : MonoBehaviour
     {
         if (hasStarted)
         {
-            audioSource.Play(); 
+            AudioClip clip = ballSounds[UnityEngine.Random.Range(0, ballSounds.Length)];
+            audioSource.PlayOneShot(clip); 
         }
     }
 }
