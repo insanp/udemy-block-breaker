@@ -16,12 +16,18 @@ public class Block : MonoBehaviour
     {
         level = FindObjectOfType<Level>();
         gameStatus = FindObjectOfType<GameStatus>();
-        level.AddCountTotalBlocks();
+        if (IsBreakable())
+        {
+            level.AddCountTotalBreakableBlocks();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DestroyBlock();
+        if (IsBreakable())
+        {
+            DestroyBlock();
+        }
     }
 
     private void DestroyBlock()
@@ -31,6 +37,11 @@ public class Block : MonoBehaviour
         gameStatus.AddScore(score);
         Destroy(gameObject);
         TriggerSparklesVFX();
+    }
+
+    private bool IsBreakable()
+    {
+        return (tag == "Breakable");
     }
 
     private void TriggerSparklesVFX()

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] int totalBlocks; // serialized for debugging
+    [SerializeField] int totalBreakableBlocks; // serialized for debugging
 
     private SceneLoader sceneLoader;
 
     public void Awake()
     {
         Debug.Log("Level Initialize");
-        totalBlocks = 0;
+        totalBreakableBlocks = 0;
     }
 
     public void Start()
@@ -19,15 +19,15 @@ public class Level : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
-    public void AddCountTotalBlocks()
+    public void AddCountTotalBreakableBlocks()
     {
-        totalBlocks++;
+        totalBreakableBlocks++;
     }
 
     public void DecreaseTotalBlocks()
     {
-        totalBlocks--;
-        if (totalBlocks <= 0)
+        totalBreakableBlocks--;
+        if (totalBreakableBlocks <= 0)
         {
             sceneLoader.LoadNextScene();
         }
