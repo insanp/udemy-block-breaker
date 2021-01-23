@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    // config params
     [SerializeField] AudioClip breakSound;
     [SerializeField] int score;
     [SerializeField] GameObject blockSparklesVFX;
+    [SerializeField] int maxHP;
 
     // cached reference
     Level level;
-    GameStatus gameStatus;
+
+    // state variables
+    [SerializeField] int currentHP;
 
     void Start()
     {
         level = FindObjectOfType<Level>();
-        gameStatus = FindObjectOfType<GameStatus>();
         if (IsBreakable())
         {
             level.AddCountTotalBreakableBlocks();
         }
+        currentHP = maxHP;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (IsBreakable())
         {
-            DestroyBlock();
+            currentHP--;
+            if (currentHP <= 0)
+            {
+                DestroyBlock();
+            }
         }
     }
 
@@ -34,7 +42,7 @@ public class Block : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
         level.DecreaseTotalBlocks();
-        gameStatus.AddScore(score);
+        FindObjectOfType<GameStatus>().AddScore(score);
         Destroy(gameObject);
         TriggerSparklesVFX();
     }
