@@ -30,7 +30,11 @@ public class Block : MonoBehaviour
         level.DecreaseTotalBlocks();
         gameStatus.AddScore(score);
         Destroy(gameObject);
+        TriggerSparklesVFX();
     }
 
-    
+    private void TriggerSparklesVFX()
+    {
+        GameObject sparkles = Instantiate(blockSparklesVFX, transform.position, transform.rotation);
+    }
 }
