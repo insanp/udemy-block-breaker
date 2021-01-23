@@ -8,9 +8,14 @@ public class Level : MonoBehaviour
 
     private SceneLoader sceneLoader;
 
+    public void Awake()
+    {
+        Debug.Log("Level Initialize");
+        totalBlocks = 0;
+    }
+
     public void Start()
     {
-        totalBlocks = 0;
         sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
