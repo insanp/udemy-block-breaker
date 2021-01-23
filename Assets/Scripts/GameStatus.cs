@@ -41,6 +41,11 @@ public class GameStatus : MonoBehaviour
         currentScore += score;
     }
 
+    public void ResetGame()
+    {
+        Destroy(gameObject);
+    }
+
     public int GetScore()
     {
         return currentScore;
