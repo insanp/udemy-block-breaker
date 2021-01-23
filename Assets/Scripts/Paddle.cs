@@ -8,11 +8,13 @@ public class Paddle : MonoBehaviour
     [SerializeField] float screenWidthInUnits = 16f;
 
     GameStatus gameStatus;
+    Ball ball;
 
     // Start is called before the first frame update
     void Start()
     {
         gameStatus = FindObjectOfType<GameStatus>();
+        ball = FindObjectOfType<Ball>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class Paddle : MonoBehaviour
     {
         if (gameStatus.IsAutoPlay())
         {
-            return FindObjectOfType<Ball>().transform.position.x;
+            return ball.transform.position.x;
         }
         else
         {
