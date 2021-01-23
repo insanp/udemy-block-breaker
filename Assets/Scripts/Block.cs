@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Block : MonoBehaviour
     [SerializeField] int score;
     [SerializeField] GameObject blockSparklesVFX;
     [SerializeField] int maxHP;
+    [SerializeField] Sprite[] hitSprites;
 
     // cached reference
     Level level;
@@ -30,12 +32,33 @@ public class Block : MonoBehaviour
     {
         if (IsBreakable())
         {
-            currentHP--;
-            if (currentHP <= 0)
-            {
-                DestroyBlock();
-            }
+            ApplyHitDamage();
         }
+    }
+
+    private void ApplyHitDamage()
+    {
+        currentHP--;
+        if (currentHP <= 0)
+        {
+            DestroyBlock();
+        } else
+        {
+            ShowNextHitSprite();
+        }
+    }
+
+    private void ShowNextHitSprite()
+    {
+        int spriteIndex = 0;
+        if (currentHP <= 0.3 * maxHP)
+        {
+            spriteIndex = 2;
+        } else if (currentHP <= 0.5 * maxHP)
+        {
+            spriteIndex = 1;
+        }
+        GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
     }
 
     private void DestroyBlock()
