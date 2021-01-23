@@ -16,7 +16,7 @@ public class Block : MonoBehaviour
         level = FindObjectOfType<Level>();
         gameStatus = FindObjectOfType<GameStatus>();
         level.AddCountTotalBlocks();
-        Debug.Log(gameStatus);
+        //Debug.Log(gameStatus.GetScore().ToString());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

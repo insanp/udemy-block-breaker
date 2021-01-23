@@ -40,4 +40,9 @@ public class GameStatus : MonoBehaviour
     {
         currentScore += score;
     }
+
+    public int GetScore()
+    {
+        return currentScore;
+    }
 }
