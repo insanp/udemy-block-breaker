@@ -6,6 +6,7 @@ public class Block : MonoBehaviour
 {
     [SerializeField] AudioClip breakSound;
     [SerializeField] int score;
+    [SerializeField] GameObject blockSparklesVFX;
 
     // cached reference
     Level level;
@@ -16,14 +17,20 @@ public class Block : MonoBehaviour
         level = FindObjectOfType<Level>();
         gameStatus = FindObjectOfType<GameStatus>();
         level.AddCountTotalBlocks();
-        //Debug.Log(gameStatus.GetScore().ToString());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        DestroyBlock();
+    }
+
+    private void DestroyBlock()
     {
         AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
         level.DecreaseTotalBlocks();
         gameStatus.AddScore(score);
         Destroy(gameObject);
     }
+
+    
 }
