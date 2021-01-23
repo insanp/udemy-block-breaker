@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameStatus : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameStatus : MonoBehaviour
     [SerializeField] int currentScore;
 
     [SerializeField] TextMeshProUGUI currentScoreText;
+    [SerializeField] bool autoPlay;
 
 
     private void Awake()
@@ -22,6 +24,11 @@ public class GameStatus : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    internal bool IsAutoPlay()
+    {
+        return autoPlay;
     }
 
     // Start is called before the first frame update
